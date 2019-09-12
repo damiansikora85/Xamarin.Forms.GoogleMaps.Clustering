@@ -254,9 +254,9 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         {
             if (pin == null)
             {
-                foreach (var outerItem in GetItems(Map))
+                foreach (var marker in clusterManager.MarkerCollection.Markers)
                 {
-                    (outerItem.NativeObject as Marker)?.HideInfoWindow();
+                    marker.HideInfoWindow();
                 }
             }
             else
