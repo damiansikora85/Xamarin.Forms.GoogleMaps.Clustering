@@ -23,7 +23,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         private volatile bool onMarkerEvent = false;
         private Pin draggingPin;
         private volatile bool withoutUpdateNative;
-        
+
         private ClusterManager clusterManager;
         private ClusterLogicHandler clusterHandler;
 
@@ -36,7 +36,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 
         private global::Android.Gms.Maps.Model.CameraPosition previousCameraPostion;
         private ClusterRenderer clusterRenderer;
-        
+
         private readonly Dictionary<string, Pin> itemsDictionary = new Dictionary<string, Pin>();
 
 
@@ -46,7 +46,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             Context context,
             IBitmapDescriptorFactory bitmapDescriptorFactory,
             Action<Pin, MarkerOptions> onMarkerCreating,
-            Action<Pin, ClusteredMarker> onMarkerCreated, 
+            Action<Pin, ClusteredMarker> onMarkerCreated,
             Action<Pin, ClusteredMarker> onMarkerDeleting,
             Action<Pin, ClusteredMarker> onMarkerDeleted)
         {
@@ -95,12 +95,12 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 case ClusterAlgorithm.GridBased:
                     algorithm = new GridBasedAlgorithm();
                     break;
-                case ClusterAlgorithm.VisibleNonHierarchicalDistanceBased:
+                /*case ClusterAlgorithm.VisibleNonHierarchicalDistanceBased:
                     algorithm =
                         new NonHierarchicalViewBasedAlgorithm(
                             context.Resources.DisplayMetrics.WidthPixels,
                             context.Resources.DisplayMetrics.HeightPixels);
-                    break;
+                    break;*/
                 default:
                     algorithm =
                         new NonHierarchicalDistanceBasedAlgorithm();
@@ -113,7 +113,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         private void NativeMapOnCameraIdle(object sender, EventArgs e)
         {
             var cameraPosition = NativeMap.CameraPosition;
-            if(previousCameraPostion == null || Math.Abs(previousCameraPostion.Zoom - cameraPosition.Zoom) > 0.001) 
+            if(previousCameraPostion == null || Math.Abs(previousCameraPostion.Zoom - cameraPosition.Zoom) > 0.001)
             {
                 previousCameraPostion = NativeMap.CameraPosition;
                 clusterManager.Cluster();
@@ -151,7 +151,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
                 .InvokeZIndex(outerItem.ZIndex)
                 .Flat(outerItem.Flat)
                 .SetAlpha(1f - outerItem.Transparency);
-            
+
             if (outerItem.Icon != null)
             {
                 var factory = bitmapDescriptorFactory ?? DefaultBitmapDescriptorFactory.Instance;
@@ -170,7 +170,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             }
             if (outerItem?.Icon?.Type == BitmapDescriptorType.View)
             {
-                marker.Visible = false; 
+                marker.Visible = false;
                 TransformXamarinViewToAndroidBitmap(outerItem, marker);
                 return marker;
             }
@@ -321,8 +321,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
             {
                 var iconView = outerItem.Icon.View;
                 var nativeView = await Utils.ConvertFormsToNative(
-                    iconView, 
-                    new Rectangle(0, 0, (double)Utils.DpToPx((float)iconView.WidthRequest), (double)Utils.DpToPx((float)iconView.HeightRequest)), 
+                    iconView,
+                    new Rectangle(0, 0, (double)Utils.DpToPx((float)iconView.WidthRequest), (double)Utils.DpToPx((float)iconView.HeightRequest)),
                     Platform.Android.Platform.CreateRendererWithContext(iconView, context));
                 var otherView = new FrameLayout(nativeView.Context);
                 nativeView.LayoutParameters = new FrameLayout.LayoutParams(Utils.DpToPx((float)iconView.WidthRequest), Utils.DpToPx((float)iconView.HeightRequest));
@@ -382,7 +382,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.Android
         {
             nativeItem.Alpha = 1f - outerItem.Transparency;
         }
-        
+
         private void OnMarkerDragStart(object sender, GoogleMap.MarkerDragStartEventArgs e)
         {
             var clusterItem = clusterRenderer.GetClusterItem(e.Marker);
