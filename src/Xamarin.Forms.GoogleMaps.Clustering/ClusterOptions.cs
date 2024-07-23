@@ -62,6 +62,8 @@ namespace Xamarin.Forms.GoogleMaps.Clustering
         /// </summary>
         internal int MinimumClusterSize { get; set; } = 5;
 
+        public bool AutoClusterAfterAddingPin { get; set; }
+
         public ClusterOptions()
         {
             Algorithm = ClusterAlgorithm.NonHierarchicalDistanceBased;
