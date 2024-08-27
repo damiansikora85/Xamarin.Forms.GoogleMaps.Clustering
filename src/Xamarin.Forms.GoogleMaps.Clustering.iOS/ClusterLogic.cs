@@ -6,7 +6,7 @@ using System.Linq;
 using CoreGraphics;
 using Foundation;
 using Google.Maps;
-using Google.Maps.Utility;
+using Google.Maps.Utils;
 using UIKit;
 using Xamarin.Forms.GoogleMaps.iOS.Extensions;
 using Xamarin.Forms.GoogleMaps.iOS.Factories;
@@ -20,7 +20,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         private ClusteredMap ClusteredMap => (ClusteredMap) Map;
 
-        private ClusterManager clusterManager;
+        private GMUClusterManager clusterManager;
 
         private bool onMarkerEvent;
         private Pin draggingPin;
@@ -59,7 +59,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             var iconGenerator = new ClusterIconGeneratorHandler(ClusteredMap.ClusterOptions);
             clusterRenderer = new ClusterRendererHandler(newNativeMap, iconGenerator,
                 ClusteredMap.ClusterOptions.MinimumClusterSize);
-            clusterManager = new ClusterManager(newNativeMap, algorithm, clusterRenderer);
+            clusterManager = new GMUClusterManager(newNativeMap, algorithm, clusterRenderer);
 
             ClusteredMap.OnCluster = HandleClusterRequest;
 
@@ -73,18 +73,18 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             newNativeMap.DraggingMarker += DraggingMarker;
         }
 
-        private static IClusterAlgorithm GetClusterAlgorithm(ClusteredMap clusteredNewMap)
+        private static IGMUClusterAlgorithm GetClusterAlgorithm(ClusteredMap clusteredNewMap)
         {
-            IClusterAlgorithm algorithm;
+            IGMUClusterAlgorithm algorithm;
             switch (clusteredNewMap.ClusterOptions.Algorithm)
             {
                 case ClusterAlgorithm.GridBased:
-                    algorithm = new GridBasedClusterAlgorithm();
+                    algorithm = new GMUGridBasedClusterAlgorithm();
                     break;
                 case ClusterAlgorithm.VisibleNonHierarchicalDistanceBased:
                     throw new NotSupportedException("VisibleNonHierarchicalDistanceBased is only supported on Android");
                 default:
-                    algorithm = new NonHierarchicalDistanceBasedAlgorithm();
+                    algorithm = new GMUNonHierarchicalDistanceBasedAlgorithm();
                     break;
             }
 
@@ -239,7 +239,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 
         private bool HandleGmsTappedMarker(MapView mapView, Marker marker)
         {
-            if (marker?.UserData is ICluster cluster)
+            if (marker?.UserData is IGMUCluster cluster)
             {
                 var pins = GetClusterPins(cluster);
                 var clusterPosition = new Position(cluster.Position.Latitude, cluster.Position.Longitude);
@@ -265,7 +265,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             return false;
         }
 
-        private List<Pin> GetClusterPins(ICluster cluster)
+        private List<Pin> GetClusterPins(IGMUCluster cluster)
         {
             var pins = new List<Pin>();
             foreach (var item in cluster.Items)

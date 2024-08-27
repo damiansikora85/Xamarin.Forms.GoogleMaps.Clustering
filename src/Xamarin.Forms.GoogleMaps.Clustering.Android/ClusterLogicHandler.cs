@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Com.Google.Maps.Android.Clustering;
+using Android.Gms.Maps.Utils.Clustering;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {

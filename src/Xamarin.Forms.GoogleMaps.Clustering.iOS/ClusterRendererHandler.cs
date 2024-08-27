@@ -4,12 +4,12 @@ using CoreGraphics;
 using CoreLocation;
 using Foundation;
 using Google.Maps;
-using Google.Maps.Utility;
+using Google.Maps.Utils;
 using UIKit;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 {
-    internal class ClusterRendererHandler : DefaultClusterRenderer
+    internal class ClusterRendererHandler : GMUDefaultClusterRenderer
     {
         private const double AnimationDuration = 0.5; 
 
@@ -17,7 +17,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
         private readonly int minimumClusterSize;
         private float maxClusterZoom = 20;
 
-        public ClusterRendererHandler(MapView mapView, ClusterIconGenerator iconGenerator, int minimumClusterSize)
+        public ClusterRendererHandler(MapView mapView, ClusterIconGeneratorHandler iconGenerator, int minimumClusterSize)
             : base(mapView, iconGenerator)
         {
             nativeMap = mapView;
@@ -44,7 +44,7 @@ namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
             marker.Icon = clusteredMarker.Icon;
         }
         
-        public override bool ShouldRenderAsCluster(ICluster cluster, float zoom)
+        public override bool ShouldRenderAsCluster(IGMUCluster cluster, float zoom)
         {
             return cluster.Count > (uint) minimumClusterSize && zoom <= maxClusterZoom;
         }

@@ -7,12 +7,12 @@ using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
 using Android.Widget;
-using Com.Google.Maps.Android.Clustering;
-using Com.Google.Maps.Android.Clustering.Algo;
 using Xamarin.Forms.GoogleMaps.Android;
 using Xamarin.Forms.GoogleMaps.Android.Extensions;
 using Xamarin.Forms.GoogleMaps.Android.Factories;
 using Xamarin.Forms.GoogleMaps.Logics;
+using Android.Gms.Maps.Utils.Clustering;
+using Android.Gms.Maps.Utils.Clustering.Algorithm;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android
 {

@@ -1,14 +1,14 @@
 using System;
 using CoreGraphics;
 using Foundation;
-using Google.Maps.Utility;
+using Google.Maps.Utils;
 using UIKit;
 using Xamarin.Forms.GoogleMaps.iOS.Factories;
 using Xamarin.Forms.Platform.iOS;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.iOS
 {
-    internal class ClusterIconGeneratorHandler : DefaultClusterIconGenerator
+    internal class ClusterIconGeneratorHandler : GMUDefaultClusterIconGenerator
     {
         private readonly NSCache iconCache;
         private readonly ClusterOptions options;

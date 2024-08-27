@@ -1,6 +1,6 @@
 using System;
 using Android.Gms.Maps.Model;
-using Com.Google.Maps.Android.Clustering;
+using Android.Gms.Maps.Utils.Clustering;
 using NativeBitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
 
 namespace Xamarin.Forms.GoogleMaps.Clustering.Android

@@ -2,8 +2,8 @@
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
-using Com.Google.Maps.Android.Clustering;
-using Com.Google.Maps.Android.Clustering.View;
+using Android.Gms.Maps.Utils.Clustering;
+using Android.Gms.Maps.Utils.Clustering.View;
 using Xamarin.Forms.GoogleMaps.Android.Factories;
 using Xamarin.Forms.Platform.Android;
 using NativeBitmapDescriptor = Android.Gms.Maps.Model.BitmapDescriptor;
