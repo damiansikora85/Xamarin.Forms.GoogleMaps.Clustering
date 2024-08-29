@@ -65,13 +65,6 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Google.Maps.Utils.Android\Google.Maps.Utils.Android.csproj">
-    <ProjectReference Include="..\Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj">
-      <Project>{5542cbe9-1858-46a1-888f-cfbf8f05cffe}</Project>
-      <Name>Xamarin.Forms.GoogleMaps.Clustering</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.Design">
       <Version>26.0.2</Version>
     </PackageReference>
@@ -93,6 +86,16 @@
     <PackageReference Include="Xamarin.Forms.GoogleMaps">
       <Version>3.2.0</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Google.Maps.Utils.Android\Google.Maps.Utils.Android.csproj">
+      <Project>{4c9dc45a-6999-42ac-8f0b-2b54b98bf848}</Project>
+      <Name>Google.Maps.Utils.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Xamarin.Forms.GoogleMaps.Clustering\Xamarin.Forms.GoogleMaps.Clustering.csproj">
+      <Project>{5542cbe9-1858-46a1-888f-cfbf8f05cffe}</Project>
+      <Name>Xamarin.Forms.GoogleMaps.Clustering</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
